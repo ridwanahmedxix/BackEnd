@@ -1,5 +1,3 @@
-const getName = (name) => {
-  console.log("Hello " + name);
+const getName = () => {
+  return " Ridwan Ahmed ";
 };
-
-getName("Ridwan");
