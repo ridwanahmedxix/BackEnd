@@ -1,4 +1,1 @@
-console.log(
-    "Hello World"
-);
-console.log("Node Js");
+console.log("Hello World");
