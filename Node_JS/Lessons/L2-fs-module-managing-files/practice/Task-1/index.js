@@ -57,10 +57,24 @@ const fs = require("fs");
 //   }
 // });
 
-fs.readFile("developer.txt", "utf-8", (err, data) => {
+// fs.readFile("developer.txt", "utf-8", (err, data) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log(data);
+//   }
+// });
+
+fs.appendFile("developer.txt", "/nHow are you ?", (err) => {
   if (err) {
     console.log(err);
   } else {
-    console.log(data);
+    fs.readFile("developer.txt", "utf-8", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data);
+      }
+    });
   }
 });
