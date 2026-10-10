@@ -28,14 +28,14 @@ const fs = require("fs");
 
 // ! ------------------------------------------------------------
 
-fs.readFile("profile.txt", "utf-8", (err, data) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Successful");
-    console.log(data);
-  }
-});
+// fs.readFile("profile.txt", "utf-8", (err, data) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("Successful");
+//     console.log(data);
+//   }
+// });
 
 // ! ------------------------------------------------------------
 
@@ -46,3 +46,21 @@ fs.readFile("profile.txt", "utf-8", (err, data) => {
 //     console.log("File Deleted");
 //   }
 // });
+
+// ! ------------------------------------------------------------
+
+// fs.rename("profile.txt", "developer.txt", (err) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("File Renamed Successfully");
+//   }
+// });
+
+fs.readFile("developer.txt", "utf-8", (err, data) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(data);
+  }
+});
