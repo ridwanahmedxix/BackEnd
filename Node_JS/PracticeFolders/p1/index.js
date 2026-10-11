@@ -4,7 +4,7 @@ fs.writeFile("diary.txt", "Today I learned Node js fs module", (err) => {
   if (err) {
     console.log(err);
   } else {
-    fs.appendFile("diary.txt", " Tomorrow I will learn more !", (err) => {
+    fs.appendFile("diary.txt", "\nTomorrow I will learn more !", (err) => {
       if (err) {
         console.log(err);
       } else {
