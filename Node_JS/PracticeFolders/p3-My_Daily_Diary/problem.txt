@@ -1,0 +1,16 @@
+My Daily Diary
+
+Level: Easy · Topic: File System
+তুমি একটি diary.txt File তৈরি করবে এবং নিজের Diary-তে কিছু লিখবে।
+তোমার কাজ:
+[ ] `diary.txt` নামে একটি File তৈরি করবে।
+[ ] File-এ লিখবে: Today I am learning Node.js.
+[ ] একই File-এর শেষে যোগ করবে: My goal is to become a great backend developer.
+[ ] File-এর সম্পূর্ণ Content পড়ে Terminal-এ দেখাবে।
+
+Expected Output:
+Today I am learning Node.js.
+My goal is to become a great backend developer.
+
+
+দ্বিতীয় বাক্যটি যেন নতুন লাইনে থাকে, সেটা খেয়াল করবে।
