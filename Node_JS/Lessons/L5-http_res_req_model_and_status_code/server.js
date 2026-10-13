@@ -4,6 +4,8 @@ const hostAddress = "127.0.0.1";
 
 const myServer = http.createServer((req, res) => {
   res.writeHead(202, { "Content-Type": "text/plain" });
+  res.write("I Love You So");
+  res.end();
 });
 
 myServer.listen(PORT, hostAddress, () => {
