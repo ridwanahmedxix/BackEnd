@@ -13,7 +13,7 @@ const myServer = http.createServer((req, res) => {
     res.end();
   } else if (req.url === "/skills") {
     res.writeHead(202, { "Content-Type": "text/plain" });
-    res.write("Node.js, JavaScript, MongoDB");
+    res.write("Node.js, JavaScript, MongoDB , Express.js");
     res.end();
   } else {
     res.writeHead(404, { "Content-Type": "text/plain" });
