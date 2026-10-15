@@ -4,7 +4,11 @@ const PORT = 2800;
 const hostAddress = "127.0.0.1";
 
 const myServer = http.createServer((req, res) => {
-  if (req.url === "/about") {
+  if (req.url === "/") {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.write(" <h1> Welcome to home page </h1>");
+    res.end();
+  } else if (req.url === "/about") {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write("<h1>About Page</h1>");
     res.end();
