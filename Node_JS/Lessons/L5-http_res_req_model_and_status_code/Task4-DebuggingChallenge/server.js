@@ -15,6 +15,6 @@ const myServer = http.createServer((req, res) => {
   }
 });
 
-myServer.listen(hostAddress, PORT, () => {
-  console.log("Server started");
+myServer.listen(PORT, hostAddress, () => {
+  console.log(`The server is runing at http://${hostAddress}:${PORT}`);
 });
