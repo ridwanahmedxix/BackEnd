@@ -1,1 +1,2 @@
-console.log("Hello");
+import getRandomFruitsName from "random-fruits-name";
+console.log(getRandomFruitsName());
