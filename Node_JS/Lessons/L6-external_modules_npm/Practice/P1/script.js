@@ -1,1 +1,2 @@
-console.log("Hey");
+const getMoviesNames = require("movies-names");
+console.log(getMoviesNames.random());
