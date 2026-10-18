@@ -1,4 +1,5 @@
 const http = require("http");
+const fs = require("fs");
 const PORT = 3000;
 const hostName = "127.0.0.1";
 
