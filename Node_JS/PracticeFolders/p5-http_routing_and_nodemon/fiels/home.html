@@ -3,14 +3,980 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7faf7" />
+    <meta name="description" content="A clean, modern and minimal home page." />
+
     <title>Home</title>
+
+    <style>
+      :root {
+        --green: #398653;
+        --green-dark: #245d39;
+        --green-light: #e8f5e9;
+        --green-soft: #f2f8f2;
+        --text: #202820;
+        --muted: #747d74;
+        --white: #ffffff;
+        --border: #e7eee7;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--text);
+        background: #f9fbf9;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      /* Navigation */
+
+      .navbar {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(14px);
+      }
+
+      .nav-container {
+        max-width: 1160px;
+        min-height: 76px;
+        padding: 0 24px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 21px;
+        font-weight: 750;
+        letter-spacing: -0.8px;
+      }
+
+      .logo-mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: var(--green);
+        color: white;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: #606960;
+        font-size: 14px;
+        font-weight: 550;
+        transition: color 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--green);
+      }
+
+      .nav-action {
+        padding: 11px 18px;
+        border: 1px solid #d9e9da;
+        border-radius: 9px;
+        background: var(--green-soft);
+        color: var(--green-dark);
+        font-size: 13px;
+        font-weight: 650;
+        transition:
+          background 180ms ease,
+          transform 180ms ease;
+      }
+
+      .nav-action:hover {
+        background: #e3f1e4;
+        transform: translateY(-2px);
+      }
+
+      .menu-toggle {
+        display: none;
+        padding: 8px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: white;
+        cursor: pointer;
+        color: var(--text);
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      /* Main section */
+
+      .hero {
+        max-width: 1160px;
+        min-height: 650px;
+        padding: 95px 24px 90px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        align-items: center;
+        gap: 65px;
+      }
+
+      .hero-content {
+        animation: enter 650ms ease both;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 12px;
+        border: 1px solid #dcebdd;
+        border-radius: 100px;
+        background: white;
+        color: var(--green-dark);
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: 0.2px;
+      }
+
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: #52a76a;
+        box-shadow: 0 0 0 3px #e7f4e9;
+      }
+
+      .hero h1 {
+        max-width: 570px;
+        margin-top: 27px;
+        font-size: clamp(42px, 5.3vw, 68px);
+        font-weight: 760;
+        letter-spacing: -3.5px;
+        line-height: 1.08;
+      }
+
+      .hero h1 span {
+        color: var(--green);
+      }
+
+      .hero-description {
+        max-width: 465px;
+        margin-top: 23px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 13px;
+        margin-top: 32px;
+      }
+
+      .btn {
+        min-height: 47px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        padding: 0 19px;
+        border: 1px solid transparent;
+        border-radius: 9px;
+        font-size: 14px;
+        font-weight: 650;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .btn-primary {
+        background: var(--green);
+        color: white;
+        box-shadow: 0 5px 14px rgba(57, 134, 83, 0.12);
+      }
+
+      .btn-primary:hover {
+        background: var(--green-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(57, 134, 83, 0.18);
+      }
+
+      .btn-secondary {
+        border-color: #dfe8df;
+        background: white;
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        background: var(--green-soft);
+        border-color: #c8dfca;
+        transform: translateY(-2px);
+      }
+
+      .arrow {
+        font-size: 18px;
+        transition: transform 180ms ease;
+      }
+
+      .btn:hover .arrow {
+        transform: translateX(3px);
+      }
+
+      .hero-note {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-top: 28px;
+        color: #828a82;
+        font-size: 12px;
+      }
+
+      .hero-note strong {
+        color: #4e5b4f;
+        font-weight: 650;
+      }
+
+      /* Right-side visual */
+
+      .hero-visual {
+        position: relative;
+        min-width: 0;
+        animation: enter 750ms 100ms ease both;
+      }
+
+      .visual-frame {
+        position: relative;
+        min-height: 410px;
+        padding: 26px;
+        overflow: hidden;
+        border: 1px solid #e0ebe0;
+        border-radius: 22px;
+        background: linear-gradient(145deg, #eff7ef, #e4f1e5);
+      }
+
+      .visual-frame::before {
+        content: "";
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        top: -100px;
+        right: -70px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.45);
+      }
+
+      .visual-frame::after {
+        content: "";
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        bottom: -100px;
+        left: -55px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      .preview {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        border: 1px solid rgba(220, 233, 220, 0.9);
+        border-radius: 13px;
+        background: white;
+        box-shadow: 0 18px 45px rgba(36, 80, 43, 0.09);
+        animation: float 5s ease-in-out infinite;
+      }
+
+      .preview-top {
+        min-height: 47px;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #edf1ed;
+      }
+
+      .window-dots {
+        display: flex;
+        gap: 5px;
+      }
+
+      .window-dots span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #dce7dc;
+      }
+
+      .preview-label {
+        color: #778177;
+        font-size: 10px;
+        font-weight: 600;
+      }
+
+      .preview-body {
+        padding: 22px 18px 18px;
+      }
+
+      .preview-heading {
+        font-size: 19px;
+        font-weight: 750;
+        letter-spacing: -0.6px;
+      }
+
+      .preview-subtitle {
+        margin-top: 7px;
+        color: #929992;
+        font-size: 11px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .stat-card {
+        padding: 16px 14px;
+        border: 1px solid #e9eee9;
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .stat-label {
+        color: #858e85;
+        font-size: 10px;
+      }
+
+      .stat-number {
+        margin-top: 9px;
+        font-size: 24px;
+        font-weight: 750;
+        letter-spacing: -0.8px;
+      }
+
+      .stat-change {
+        margin-top: 7px;
+        color: var(--green);
+        font-size: 10px;
+        font-weight: 650;
+      }
+
+      .chart-card {
+        margin-top: 13px;
+        padding: 15px;
+        border: 1px solid #e9eee9;
+        border-radius: 10px;
+        background: white;
+      }
+
+      .chart-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .chart-title {
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .chart-period {
+        color: #899189;
+        font-size: 10px;
+      }
+
+      .chart {
+        width: 100%;
+        height: 83px;
+        margin-top: 12px;
+        display: block;
+        overflow: visible;
+      }
+
+      .floating-note {
+        position: absolute;
+        z-index: 2;
+        right: -18px;
+        bottom: 36px;
+        width: 185px;
+        padding: 15px;
+        border: 1px solid #e5ece5;
+        border-radius: 12px;
+        background: white;
+        box-shadow: 0 12px 35px rgba(35, 67, 37, 0.09);
+        animation: float 5s 0.6s ease-in-out infinite;
+      }
+
+      .floating-note small {
+        color: #8a938a;
+        font-size: 10px;
+      }
+
+      .floating-note p {
+        margin-top: 7px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .progress-track {
+        height: 5px;
+        margin-top: 12px;
+        overflow: hidden;
+        border-radius: 10px;
+        background: #edf3ed;
+      }
+
+      .progress-fill {
+        width: 76%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--green);
+        animation: progress 900ms 500ms ease both;
+        transform-origin: left;
+      }
+
+      /* Feature strip */
+
+      .features {
+        padding: 0 24px 75px;
+      }
+
+      .features-inner {
+        max-width: 1112px;
+        margin: auto;
+        padding: 32px 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .feature {
+        padding: 4px 28px;
+      }
+
+      .feature + .feature {
+        border-left: 1px solid var(--border);
+      }
+
+      .feature-number {
+        color: #9ab89d;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .feature h3 {
+        margin-top: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+      }
+
+      .feature p {
+        margin-top: 9px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      /* Footer */
+
+      .footer {
+        padding: 24px;
+        background: white;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-inner {
+        max-width: 1112px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .footer-copy {
+        color: #858d85;
+        font-size: 12px;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 22px;
+        list-style: none;
+      }
+
+      .footer-links a {
+        color: #737d73;
+        font-size: 12px;
+        transition: color 180ms ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--green);
+      }
+
+      /* Animations */
+
+      @keyframes enter {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      @keyframes progress {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      /* Responsive */
+
+      @media (max-width: 900px) {
+        .hero {
+          min-height: auto;
+          padding-top: 75px;
+          gap: 42px;
+        }
+
+        .hero h1 {
+          font-size: clamp(40px, 5.5vw, 56px);
+          letter-spacing: -2.5px;
+        }
+
+        .visual-frame {
+          min-height: 370px;
+          padding: 18px;
+        }
+
+        .floating-note {
+          right: -8px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .nav-container {
+          min-height: 68px;
+          padding: 0 19px;
+        }
+
+        .logo {
+          font-size: 19px;
+        }
+
+        .nav-action {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 68px;
+          left: 0;
+          right: 0;
+          display: none;
+          align-items: stretch;
+          gap: 0;
+          padding: 8px 19px 16px;
+          border-bottom: 1px solid var(--border);
+          background: white;
+        }
+
+        .nav-links.open {
+          display: flex;
+          flex-direction: column;
+          animation: enter 180ms ease both;
+        }
+
+        .nav-links li a {
+          display: block;
+          padding: 14px 5px;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 45px;
+          padding: 66px 21px 60px;
+        }
+
+        .hero h1 {
+          max-width: 480px;
+          margin-top: 23px;
+          font-size: clamp(43px, 10vw, 59px);
+          letter-spacing: -2.6px;
+        }
+
+        .hero-description {
+          font-size: 15px;
+        }
+
+        .hero-visual {
+          max-width: 490px;
+          width: 100%;
+          margin: auto;
+        }
+
+        .visual-frame {
+          min-height: 370px;
+          padding: 20px;
+        }
+
+        .floating-note {
+          right: -5px;
+          bottom: 24px;
+        }
+
+        .features {
+          padding: 0 21px 50px;
+        }
+
+        .features-inner {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
+        .feature {
+          padding: 22px 5px;
+        }
+
+        .feature + .feature {
+          border-left: none;
+          border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-    <h3>Home</h3>
+    <header class="navbar">
+      <nav class="nav-container" aria-label="Main navigation">
+        <a class="logo" href="/" aria-label="Home">
+          <!-- <span class="logo-mark">N</span> -->
+          <span>Northline</span>
+        </a>
+
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span id="menuIcon">☰</span>
+        </button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a class="active" href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+
+        <a class="nav-action" href="/contact">Get in touch</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">
+            <span class="status-dot"></span>
+            A fresh approach to the web
+          </div>
+
+          <h1>
+            Simple ideas.<br />
+            Better <span>experiences.</span>
+          </h1>
+
+          <p class="hero-description">
+            Good design doesn't need to be complicated. Explore a cleaner way to
+            bring ideas to life with thoughtful details and a focus on what
+            matters.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="/about" class="btn btn-primary">
+              Discover more
+              <span class="arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a href="/contact" class="btn btn-secondary"> Get in touch </a>
+          </div>
+
+          <div class="hero-note">
+            <span class="status-dot"></span>
+            <span
+              ><strong>Built with care</strong> · Designed for everyone</span
+            >
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-frame">
+            <div class="preview">
+              <div class="preview-top">
+                <div class="window-dots">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+
+                <span class="preview-label">OVERVIEW</span>
+              </div>
+
+              <div class="preview-body">
+                <h2 class="preview-heading">Your workspace</h2>
+                <p class="preview-subtitle">Everything in one clear view.</p>
+
+                <div class="stats">
+                  <div class="stat-card">
+                    <p class="stat-label">Projects</p>
+                    <p class="stat-number">12</p>
+                    <p class="stat-change">+2 this month</p>
+                  </div>
+
+                  <div class="stat-card">
+                    <p class="stat-label">Progress</p>
+                    <p class="stat-number">76%</p>
+                    <p class="stat-change">Moving forward</p>
+                  </div>
+                </div>
+
+                <div class="chart-card">
+                  <div class="chart-header">
+                    <span class="chart-title">Weekly activity</span>
+                    <span class="chart-period">Last 7 days</span>
+                  </div>
+
+                  <svg
+                    class="chart"
+                    viewBox="0 0 320 83"
+                    preserveAspectRatio="none"
+                    role="img"
+                    aria-label="Illustrative weekly activity chart"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="chartFill"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="0%"
+                          stop-color="#78b986"
+                          stop-opacity=".25"
+                        />
+                        <stop
+                          offset="100%"
+                          stop-color="#78b986"
+                          stop-opacity="0"
+                        />
+                      </linearGradient>
+                    </defs>
+
+                    <path
+                      d="M0 65 H320 M0 43 H320 M0 21 H320"
+                      stroke="#edf2ed"
+                      stroke-width="1"
+                      fill="none"
+                    />
+
+                    <path
+                      d="M0 62 C22 58 28 48 48 51
+                       S78 65 96 43
+                       S125 47 144 35
+                       S171 48 192 27
+                       S223 36 240 20
+                       S280 32 320 8
+                       L320 83 L0 83 Z"
+                      fill="url(#chartFill)"
+                    />
+
+                    <path
+                      d="M0 62 C22 58 28 48 48 51
+                       S78 65 96 43
+                       S125 47 144 35
+                       S171 48 192 27
+                       S223 36 240 20
+                       S280 32 320 8"
+                      stroke="#398653"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+
+                    <circle cx="320" cy="8" r="3.5" fill="#398653" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="floating-note">
+              <small>Current progress</small>
+              <p>You're making progress</p>
+              <div class="progress-track">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="features-inner">
+          <article class="feature">
+            <span class="feature-number">01 / CLARITY</span>
+            <h3>Less clutter, more focus</h3>
+            <p>Every element has a purpose. Nothing extra gets in the way.</p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">02 / PERFORMANCE</span>
+            <h3>Fast by design</h3>
+            <p>
+              Lightweight code and smooth transitions keep the experience
+              responsive.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">03 / EXPERIENCE</span>
+            <h3>Works on every screen</h3>
+            <p>
+              A consistent layout that adapts naturally to phones, tablets and
+              desktops.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © <span id="year"></span> Northline. All rights reserved.
+        </p>
+
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const menuIcon = document.getElementById("menuIcon");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+
+        menuToggle.setAttribute("aria-expanded", isOpen);
+        menuToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Close navigation" : "Open navigation",
+        );
+
+        menuIcon.textContent = isOpen ? "×" : "☰";
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation");
+          menuIcon.textContent = "☰";
+        });
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

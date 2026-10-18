@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f8fbf8" />
+    <title>404 — Page Not Found</title>
+
+    <style>
+      :root {
+        --green: #398653;
+        --dark-green: #245d39;
+        --light-green: #e8f5e9;
+        --soft-green: #f2f8f2;
+        --text: #202820;
+        --muted: #747d74;
+        --border: #e5ede5;
+        --white: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #f8fbf8;
+        color: var(--text);
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Header */
+
+      .navbar {
+        width: 100%;
+        border-bottom: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .nav-container {
+        max-width: 1160px;
+        min-height: 76px;
+        margin: auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 21px;
+        font-weight: 750;
+        letter-spacing: -0.8px;
+      }
+
+      .logo-mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: var(--green);
+        color: white;
+        font-size: 17px;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #606960;
+        font-size: 13px;
+        font-weight: 600;
+        transition: color 0.2s ease;
+      }
+
+      .back-link:hover {
+        color: var(--green);
+      }
+
+      /* Main error section */
+
+      main {
+        flex: 1;
+        display: grid;
+        place-items: center;
+        padding: 65px 22px 80px;
+      }
+
+      .error-content {
+        width: 100%;
+        max-width: 590px;
+        text-align: center;
+        animation: appear 0.65s ease both;
+      }
+
+      .error-illustration {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        height: 225px;
+        margin: 0 auto 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .illustration-circle {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: var(--light-green);
+        animation: breathe 4s ease-in-out infinite;
+      }
+
+      .illustration-ring {
+        position: absolute;
+        width: 270px;
+        height: 180px;
+        border: 1px solid #d8e9d9;
+        border-radius: 50%;
+        transform: rotate(-16deg);
+      }
+
+      .error-number {
+        position: relative;
+        z-index: 1;
+        color: var(--green);
+        font-size: clamp(105px, 22vw, 160px);
+        line-height: 1;
+        font-weight: 800;
+        letter-spacing: -10px;
+        text-shadow: 0 7px 0 rgba(57, 134, 83, 0.07);
+      }
+
+      .floating-dot {
+        position: absolute;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #9ccba4;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .dot-one {
+        top: 27px;
+        right: 62px;
+      }
+
+      .dot-two {
+        bottom: 25px;
+        left: 64px;
+        width: 8px;
+        height: 8px;
+        animation-delay: 0.7s;
+      }
+
+      .error-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 1px solid #dcebdd;
+        border-radius: 100px;
+        background: white;
+        color: var(--dark-green);
+        font-size: 11px;
+        font-weight: 750;
+        letter-spacing: 1.1px;
+      }
+
+      .error-label span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      h1 {
+        margin-top: 22px;
+        font-size: clamp(30px, 5vw, 43px);
+        font-weight: 760;
+        letter-spacing: -1.8px;
+        line-height: 1.2;
+      }
+
+      .description {
+        max-width: 410px;
+        margin: 16px auto 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .actions {
+        margin-top: 29px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .btn {
+        min-height: 47px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 19px;
+        border: 1px solid transparent;
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 650;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--green);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: var(--dark-green);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px #39865320;
+      }
+
+      .btn-secondary {
+        border-color: #dfe8df;
+        background: white;
+        color: var(--text);
+      }
+
+      .btn-secondary:hover {
+        background: var(--soft-green);
+        transform: translateY(-2px);
+      }
+
+      .arrow {
+        font-size: 17px;
+        transition: transform 0.2s ease;
+      }
+
+      .btn:hover .arrow {
+        transform: translateX(3px);
+      }
+
+      .help-text {
+        margin-top: 34px;
+        color: #929992;
+        font-size: 12px;
+      }
+
+      .help-text a {
+        color: var(--green);
+        font-weight: 650;
+      }
+
+      .help-text a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+
+      footer {
+        padding: 23px 24px;
+        border-top: 1px solid var(--border);
+        background: white;
+      }
+
+      .footer-inner {
+        max-width: 1112px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .footer-copy {
+        color: #858d85;
+        font-size: 12px;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 22px;
+        list-style: none;
+      }
+
+      .footer-links a {
+        color: #737d73;
+        font-size: 12px;
+        transition: color 0.2s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--green);
+      }
+
+      /* Animations */
+
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.045);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .nav-container {
+          min-height: 68px;
+          padding: 0 19px;
+        }
+
+        .logo {
+          font-size: 19px;
+        }
+
+        main {
+          padding: 50px 20px 60px;
+        }
+
+        .error-illustration {
+          height: 190px;
+          margin-bottom: 25px;
+        }
+
+        .illustration-circle {
+          width: 175px;
+          height: 175px;
+        }
+
+        .illustration-ring {
+          width: 220px;
+          height: 145px;
+        }
+
+        .error-number {
+          letter-spacing: -7px;
+        }
+
+        .dot-one {
+          right: 35px;
+        }
+
+        .dot-two {
+          left: 35px;
+        }
+
+        h1 {
+          letter-spacing: -1px;
+        }
+
+        .description {
+          font-size: 13px;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <nav class="nav-container" aria-label="Main navigation">
+        <a class="logo" href="/" aria-label="Home">
+          <span class="logo-mark">N</span>
+          <span>Northline</span>
+        </a>
+
+        <a class="back-link" href="/">
+          <span aria-hidden="true">←</span>
+          Back to home
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="error-content">
+        <div class="error-illustration" aria-hidden="true">
+          <div class="illustration-circle"></div>
+          <div class="illustration-ring"></div>
+          <span class="floating-dot dot-one"></span>
+          <span class="floating-dot dot-two"></span>
+          <div class="error-number">404</div>
+        </div>
+
+        <div class="error-label">
+          <span></span>
+          ERROR 404
+        </div>
+
+        <h1>Looks like you're lost.</h1>
+
+        <p class="description">
+          The page you're looking for doesn't exist, may have been moved, or the
+          address might be incorrect. Let's get you back on track.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="/">
+            Go to homepage
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+
+          <button class="btn btn-secondary" id="goBack" type="button">
+            Go back
+          </button>
+        </div>
+
+        <p class="help-text">
+          Still having trouble?
+          <a href="/contact">Contact us</a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © <span id="year"></span> Northline. All rights reserved.
+        </p>
+
+        <ul class="footer-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      document.getElementById("goBack").addEventListener("click", () => {
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          window.location.href = "/";
+        }
+      });
+    </script>
+  </body>
+</html>

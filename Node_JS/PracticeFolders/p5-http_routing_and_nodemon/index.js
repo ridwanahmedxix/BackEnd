@@ -34,6 +34,16 @@ const myServer = http.createServer((req, res) => {
         res.end();
       }
     });
+  } else {
+    fs.readFile("./fiels/error.html", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.writeHead(404, { "content-type": "text/html" });
+        res.write(data);
+        res.end();
+      }
+    });
   }
 });
 
