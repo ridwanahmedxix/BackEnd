@@ -4,7 +4,27 @@ const PORT = 2578;
 const hostAddress = "127.0.0.1";
 
 const myServer = http.createServer((req, res) => {
-  res.end("Hey !");
+  if (req.url === "/") {
+    fs.readFile("./fiels/home.html", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.writeHead(200, { "content-type": "text/html" });
+        res.write(data);
+        res.end();
+      }
+    });
+  } else if (req.url === "contact") {
+    fs.readFile("./fiels/contact.html", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.writeHead(200, { "content-type": "text/html" });
+        res.write(data);
+        res.end();
+      }
+    });
+  }
 });
 
 myServer.listen(PORT, hostAddress, () => {
